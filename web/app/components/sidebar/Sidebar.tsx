@@ -6,9 +6,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import img from "../favicon.ico";
-import { CustomIcon } from "../icons/icon";
 import { ITEM_SIDEBAR } from "./constants/items";
 import { useSidebarContext } from "./context/sidebarContext";
+import { CustomIcon } from "@/app/components/icons/icon";
 
 export const Sidebar = () => {
   const { isCollapsed, toggleCollapsed } = useSidebarContext();
