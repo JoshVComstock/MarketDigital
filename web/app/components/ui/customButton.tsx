@@ -4,7 +4,8 @@ import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
 import { CustomIcon } from "../icons/icon";
 
-interface Props {
+export interface PropsButton
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "tertiary";
   labelWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   label?: string;
@@ -24,7 +25,8 @@ const CustomButton = ({
   icon,
   iconOnly = false,
   size = "md",
-}: Props) => {
+  ...props
+}: PropsButton) => {
   const sizeStyles = clsx({
     "px-2 py-1 text-xs": size === "sm",
     "px-3 py-2 text-sm": size === "md",
@@ -54,7 +56,7 @@ const CustomButton = ({
   });
 
   return (
-    <button className={baseStyles} disabled={disabled}>
+    <button className={baseStyles} disabled={disabled} {...props}>
       {icon && <CustomIcon icon={icon} size={18} />}
       {!iconOnly && label && (
         <span className={labelStyles} style={{ fontWeight: labelWeight }}>
