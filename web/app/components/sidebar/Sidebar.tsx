@@ -5,11 +5,10 @@ import { ChevronDown, ChevronsLeft, EllipsisVertical } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import img from "../favicon.ico";
 import { ITEM_SIDEBAR } from "./constants/items";
 import { useSidebarContext } from "./context/sidebarContext";
 import { CustomIcon } from "@/app/components/icons/icon";
-
+import img from "../../../public/globe.svg";
 export const Sidebar = () => {
   const { isCollapsed, toggleCollapsed } = useSidebarContext();
   const pathname = usePathname();
@@ -113,8 +112,8 @@ export const Sidebar = () => {
     "self-center": !isCollapsed,
   });
   const IconCollapsedClass = clsx("transition-transform", {
-    "rotate-180": isCollapsed,
-    "rotate-0": !isCollapsed,
+    "rotate-180": !isCollapsed,
+    "rotate-0": isCollapsed,
   });
   return (
     <nav className={navClass}>

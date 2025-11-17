@@ -17,6 +17,6 @@ export const CustomIcon = ({
   color,
 }: CustomIconProps) => {
   return (
-    <Icon size={size} color={color} className={clsx("stroke-2", className)} />
+    <Icon size={size} color={color} className={clsx("stroke-1", className)} />
   );
 };

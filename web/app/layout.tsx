@@ -1,5 +1,6 @@
 import React from "react";
-import "./globals.css"
+import "./globals.css";
+import { SidebarContextProvider } from "./components/sidebar/context/sidebarContext";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        {children}
+        <SidebarContextProvider>{children}</SidebarContextProvider>
       </body>
     </html>
   );
