@@ -2,32 +2,18 @@
   "compilerOptions": {
     "module": "nodenext",
     "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
-
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["node", "express"],
+    "esModuleInterop": true,
+    "moduleResolution": "nodenext",
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
     "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": false,
     "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
   },
   "files": ["src/infraestructure/global/global.d.ts"],
   "include": ["src/**/*"],
