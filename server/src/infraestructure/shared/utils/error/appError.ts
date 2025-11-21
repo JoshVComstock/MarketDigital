@@ -18,6 +18,7 @@ export class AppError extends Error {
     this.status = status;
     this.details = details;
     this.message = message;
+    console.log(Error);
     Object.setPrototypeOf(this, AppError.prototype);
   }
 }

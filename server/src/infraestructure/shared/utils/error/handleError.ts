@@ -1,14 +1,14 @@
-import { ERROR_MESSAGES } from "../../constants/ERRORS";
 import { HTTP_STATUS } from "../../constants/HTTP_STATUS";
+import { ERROR_MESSAGES } from "../../constants/MESSAGES";
 import { AppError } from "./appError";
 
 export class ValidationError extends AppError {
-  constructor(details?: any) {
+  constructor(details?: any, message?: string) {
     super(
       "VALIDATION_ERROR",
       HTTP_STATUS.VALIDATE,
       ERROR_MESSAGES.VALIDATION_ERROR,
-      { details }
+      details
     );
   }
 }

@@ -2,11 +2,22 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Express } from "express";
 import { configureCors } from "./infraestructure/configuration/cors";
-export const createServer = (): Express => {
+import routes from "./interface/routes";
+import {
+  errorMiddleware,
+  responseMiddleware,
+} from "./infraestructure/middlewares/responseHandler";
+export const createServer = () => {
   const app = express();
   app.use(cookieParser());
   app.disable("x-powered-by");
+  app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
   app.use(cors(configureCors));
+  app.use(responseMiddleware);
+  app.use("/api/v1", routes);
+  app.use(errorMiddleware);
+
   return app;
 };
