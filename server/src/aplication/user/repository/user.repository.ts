@@ -1,9 +1,9 @@
-import { prismaDB } from "../../../infraestructure/configuration/prisma.config";
+import { prismaBD } from "../../../infraestructure/configuration/bd.config";
 import { UserCreateDto } from "../dto/create.dto";
 
 export const UserRepository = {
-  create: (Props: UserCreateDto) => {
-    return prismaDB.user.create({
+  create: async (Props: UserCreateDto) => {
+    return await prismaBD.user.create({
       data: Props,
     });
   },
