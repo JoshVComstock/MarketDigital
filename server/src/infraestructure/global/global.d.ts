@@ -7,4 +7,5 @@ declare global {
       failure: (code: ERROR_NAME, details?: any, message?: string) => Response;
     }
   }
+  var prisma: PrismaClient | undefined;
 }

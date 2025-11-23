@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import z, { ZodType, ZodError } from "zod";
+import { ZodType } from "zod";
 import { ValidationError } from "../shared/utils/error/handleError";
 
 export const validateSchema =
@@ -14,7 +14,6 @@ export const validateSchema =
       }
       if (type === "body") req.body = parsed.data;
       if (type === "query") req.query = parsed.data;
-
       next();
     } catch (error) {
       next(error);

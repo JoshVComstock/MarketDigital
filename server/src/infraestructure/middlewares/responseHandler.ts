@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { handleError, handleSuccess } from "../shared/utils/http/http";
-import { ERROR_STATUS } from "../shared/constants/ERROR";
 import { HTTP_STATUS } from "../shared/constants/HTTP_STATUS";
 import { AppError } from "../shared/utils/error/appError";
+import { handleError, handleSuccess } from "../shared/utils/http/http";
 
 export const responseMiddleware = (
   req: Request,

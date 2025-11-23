@@ -1,7 +1,7 @@
 import { ERROR_STATUS } from "../../constants/ERROR";
 import { ERROR_MESSAGES } from "../../constants/MESSAGES";
 import { ERROR_NAME } from "../../types/error";
-import { ApiResponse, HTTP_STATUS_CODE } from "../../types/http";
+import { ApiResponse } from "../../types/http";
 
 export const handleSuccess = <T>(
   message: string,
