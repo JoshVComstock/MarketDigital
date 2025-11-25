@@ -12,7 +12,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className={LatoutClass}>
       <Sidebar />
-      <main>{children}</main>
+      <main className="p-4 flex-1">{children}</main>
     </section>
   );
 };
