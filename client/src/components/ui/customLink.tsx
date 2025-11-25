@@ -22,7 +22,7 @@ const CustomLink = ({
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
   const linkClass = clsx(
-    " flex items-center gap-2   p-3 rounded-3xl text-sm  transition-gap duration-300",
+    " flex items-center gap-2 p-3 rounded-3xl text-sm  transition-gap duration-300",
     {
       " justify-center ": !isCollapsed,
       "text-tx-light-500": theme === "LIGHT" && pathname !== href,
