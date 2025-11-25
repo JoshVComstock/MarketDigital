@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {  
+
+  --color-primary-500: #7AFF68; 
+  --color-primary-300: #D4FE6A; 
+  --color-background-light-300: #F2F4F3;
+  --color-background-light-500: #D5DC;
+  --color-background-dark-500: #0F0F11;
+  --color-background-dark-300: #2D2D2D;
+
+ --color-primary-gradient: linear-gradient(90deg, #40BCA8 0%, #40BCA8 48%, #40BCA8 100%);
+}
