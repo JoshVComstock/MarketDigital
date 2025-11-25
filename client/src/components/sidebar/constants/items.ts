@@ -11,7 +11,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 
-interface MenuItem {
+export interface MenuItem {
   label: string;
   path?: string;
   icon?: LucideIcon;

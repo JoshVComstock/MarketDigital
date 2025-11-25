@@ -5,7 +5,11 @@
   --color-primary-500: #7AFF68; 
   --color-primary-300: #D4FE6A; 
   --color-background-light-300: #F2F4F3;
-  --color-background-light-500: #D5DC;
+  --color-background-light-500: #D5DCE4;
   --color-background-dark-500: #0F0F11;
   --color-background-dark-300: #2D2D2D;
+  --color-tx-dark-500: #909092;
+  --color-tx-light-500: #252826;
+  --color-tx-primary-500: #39e609;
+  --color-tx-primary-700: #487D3B;
 }

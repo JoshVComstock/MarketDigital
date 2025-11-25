@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export interface PropsButton
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "tertiary" | "focus-icon";
+  variant?: "primary" | "secondary" | "tertiary" | "focus-icon" | "gradiant";
   labelWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   label?: string;
   contentAling?: "start" | "end" | "center";
@@ -64,6 +64,11 @@ const CustomButton = ({
       "rounded-3xl ": variant === "primary" && !disabled && theme === "LIGHT",
       "border-transparent": variant === "focus-icon" && theme === "DARK",
       "border-gray-300": variant === "focus-icon" && theme === "LIGHT",
+      "bg-linear-to-l from-transparent to-white/15 p-4 rounded-l-3xl rounded-r-none text-white cursor-pointer border-transparent border-r-0":
+        variant === "gradiant" && !disabled && theme === "DARK",
+      "opacity-70": variant === "gradiant" && disabled,
+      "bg-linear-to-l from-transparent to-black/15 p-4 rounded-l-3xl rounded-r-none text-black cursor-pointer border-transparent border-r-0":
+        variant === "gradiant" && !disabled && theme === "LIGHT",
     }
   );
   const IconClass = clsx("border border-transparent", {
