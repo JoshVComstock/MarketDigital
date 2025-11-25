@@ -48,11 +48,11 @@ const CustomButton = ({
     sizeStyles,
     contentAlingStyles,
     {
-      "opacity-70 ": isHovered,
-
+      "opacity-50 ": isHovered && variant === "focus-icon",
       "min-h-12 min-w-12": variant === "focus-icon",
       "rounded-full bg-white/10": variant === "focus-icon" && !disabled,
-      " bg-primary-500 border-transparent": variant === "primary" && !disabled,
+      " bg-primary-500/75 border-transparent":
+        variant === "primary" && !disabled,
       "bg-primary-500/20 border-primary-500/30 text-primary-500":
         variant === "secondary" && !disabled && theme === "DARK",
       "bg-primary-500/30 border-primary-500":
@@ -69,19 +69,22 @@ const CustomButton = ({
       "opacity-70": variant === "gradiant" && disabled,
       "bg-linear-to-l from-transparent to-black/15 p-4 rounded-l-3xl rounded-r-none text-black cursor-pointer border-transparent border-r-0":
         variant === "gradiant" && !disabled && theme === "LIGHT",
+      "opacity-75": isHovered && variant === "primary",
     }
   );
   const IconClass = clsx("border border-transparent", {
-    "text-white": variant === "focus-icon" && !isHovered && theme === "DARK",
-    "text-black": variant === "focus-icon" && !isHovered && theme === "LIGHT",
-    "text-gray-300": variant === "focus-icon" && isHovered && theme === "DARK",
-    "text-gray-700": variant === "focus-icon" && isHovered && theme === "LIGHT",
+    "text-white": variant === "focus-icon" && theme === "DARK",
+    "text-black": variant === "focus-icon" && theme === "LIGHT",
+    "text-gray-300": variant === "focus-icon" && theme === "DARK",
+    "text-gray-700": variant === "focus-icon" && theme === "LIGHT",
+    "text-black/90": variant === "primary",
   });
   const labelStyles = clsx("truncate text-ellipsis whitespace-nowrap", {
-    "text-white": variant === "focus-icon" && !isHovered && theme === "DARK",
-    "text-black": variant === "focus-icon" && !isHovered && theme === "LIGHT",
-    "text-gray-300": variant === "focus-icon" && isHovered && theme === "DARK",
-    "text-gray-700": variant === "focus-icon" && isHovered && theme === "LIGHT",
+    "text-white": variant === "focus-icon" && theme === "DARK",
+    "text-black": variant === "focus-icon" && theme === "LIGHT",
+    "text-gray-300": variant === "focus-icon" && theme === "DARK",
+    "text-gray-700": variant === "focus-icon" && theme === "LIGHT",
+    "text-black/90": variant === "primary",
   });
 
   return (
