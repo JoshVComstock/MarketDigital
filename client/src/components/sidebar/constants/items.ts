@@ -1,11 +1,13 @@
 import { info } from "console";
 import {
   BadgeCheck,
+  ChartNoAxesCombined,
   House,
   Info,
   Layers3,
   LucideIcon,
   MessageCircleMore,
+  Plus,
   Settings,
   Shirt,
   ShoppingCart,
@@ -38,8 +40,12 @@ export const ITEM_SIDEBAR: MenuCategory[] = [
         label: "Products",
         icon: Shirt,
         children: [
-          { label: "Nuevos", path: "/productos/new" },
-          { label: "En tencia", path: "/productos/tendencia" },
+          { label: "Nuevos", path: "/productos/new", icon: Plus },
+          {
+            label: "En tencia",
+            path: "/productos/tendencia",
+            icon: ChartNoAxesCombined,
+          },
         ],
       },
       { label: "Categories", path: "/categories", icon: Layers3 },
