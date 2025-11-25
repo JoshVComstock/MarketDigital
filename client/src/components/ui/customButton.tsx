@@ -3,6 +3,8 @@
 import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
 import { CustomIcon } from "./customIcon";
+import { useTheme } from "@/context/ThemeContext";
+import { useState } from "react";
 
 export interface PropsButton
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -27,39 +29,65 @@ const CustomButton = ({
   size = "md",
   ...props
 }: PropsButton) => {
+  const { theme } = useTheme();
+  const [isHovered, setIsHovered] = useState(false);
+
   const sizeStyles = clsx({
     "px-2 py-1 text-xs": size === "sm",
     "px-3 py-2 text-sm": size === "md",
     "px-4 py-3 text-base": size === "lg",
   });
+  const contentAlingStyles = clsx({
+    "justify-start": contentAling === "start",
+    "justify-end": contentAling === "end",
+    "justify-center": contentAling === "center",
+  });
 
-  const baseStyles = clsx(
-    " flex items-center gap-2 cursor-pointer transition-all duration-200 ease-in-out",
-    "justify-center overflow-hidden select-none",
+  const ButtonClass = clsx(
+    "flex items-center gap-4 cursor-pointer transition-all duration-200 ease-in-out border rounded-3xl min-h-10 min-w-10",
     sizeStyles,
+    contentAlingStyles,
     {
-      "bg-white/10 text-white hover:opacity-80  rounded-full min-h-12 min-w-12 ":
-        variant === "focus-icon" && !disabled,
-      "bg-primary-900 border-primary-900 text-white hover:opacity-80":
-        variant === "primary" && !disabled,
-      "border-primary-100 bg-primary-100 text-primary-900 hover:bg-primary-500":
-        variant === "secondary" && !disabled,
-      "border-gray-200 text-primary-900 hover:border-primary-500":
-        variant === "tertiary" && !disabled,
-      "opacity-50 cursor-not-allowed": disabled,
-      "justify-start": contentAling === "start",
-      "justify-end": contentAling === "end",
-      "justify-center": contentAling === "center",
+      "opacity-70 ": isHovered,
+
+      "min-h-12 min-w-12": variant === "focus-icon",
+      "rounded-full bg-white/10": variant === "focus-icon" && !disabled,
+      " bg-primary-500 border-transparent": variant === "primary" && !disabled,
+      "bg-primary-500/20 border-primary-500/30 text-primary-500":
+        variant === "secondary" && !disabled && theme === "DARK",
+      "bg-primary-500/30 border-primary-500":
+        variant === "secondary" && !disabled && theme === "LIGHT",
+      "text-primary-500 border-transparent bg-primary-500/10":
+        variant === "tertiary" && !disabled && theme === "DARK",
+      "text-gray-700 border-transparent bg-primary-500/20":
+        variant === "tertiary" && !disabled && theme === "LIGHT",
+      "rounded-3xl ": variant === "primary" && !disabled && theme === "LIGHT",
+      "border-transparent": variant === "focus-icon" && theme === "DARK",
+      "border-gray-300": variant === "focus-icon" && theme === "LIGHT",
     }
   );
-
+  const IconClass = clsx("border border-transparent", {
+    "text-white": variant === "focus-icon" && !isHovered && theme === "DARK",
+    "text-black": variant === "focus-icon" && !isHovered && theme === "LIGHT",
+    "text-gray-300": variant === "focus-icon" && isHovered && theme === "DARK",
+    "text-gray-700": variant === "focus-icon" && isHovered && theme === "LIGHT",
+  });
   const labelStyles = clsx("truncate text-ellipsis whitespace-nowrap", {
-    "text-white": variant === "primary",
+    "text-white": variant === "focus-icon" && !isHovered && theme === "DARK",
+    "text-black": variant === "focus-icon" && !isHovered && theme === "LIGHT",
+    "text-gray-300": variant === "focus-icon" && isHovered && theme === "DARK",
+    "text-gray-700": variant === "focus-icon" && isHovered && theme === "LIGHT",
   });
 
   return (
-    <button className={baseStyles} disabled={disabled} {...props}>
-      {icon && <CustomIcon icon={icon} size={18} />}
+    <button
+      className={ButtonClass}
+      disabled={disabled}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      {...props}
+    >
+      {icon && <CustomIcon icon={icon} size={18} className={IconClass} />}
       {!iconOnly && label && (
         <span className={labelStyles} style={{ fontWeight: labelWeight }}>
           {label}
