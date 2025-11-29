@@ -1,12 +1,12 @@
 "use client";
 
+import { useTheme } from "@/context/ThemeContext";
+import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import CustomLink from "../ui/customLink";
 import { MenuItem } from "./constants/ITEMS";
 import { useSidebarContext } from "./context/sidebarContext";
-import clsx from "clsx";
-import { useTheme } from "@/context/ThemeContext";
 
 interface SidebarItemProps {
   item: MenuItem;

@@ -1,4 +1,3 @@
-import React from "react";
 import { ProductVariant } from "./types/Props";
 import { useTheme } from "@/context/ThemeContext";
 import clsx from "clsx";

@@ -25,7 +25,7 @@ const MainCard = ({
   const { theme } = useTheme();
 
   const CardMainClass = clsx(
-    "rounded-3xl p-4 flex flex-col gap-2 flex-1 min-w-[280px] max-w-[320px] border  ",
+    "rounded-3xl p-4 flex flex-col gap-2 flex-1 border  ",
     {
       "bg-background-light-300/10  ": theme === "LIGHT",
       "bg-background-dark-300 ": theme === "DARK",
@@ -85,7 +85,7 @@ const MainCard = ({
           </span>
         )}
         {img ? (
-          <img src={img} alt={title} className="w-full h-full object-contain" />
+          <img src={img} alt={title} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex justify-center items-center">
             <CustomIcon
@@ -122,7 +122,7 @@ const MainCard = ({
         {title}
         <p className="flex items-center gap-1 text-xs font-light ">
           {pints}
-          <CustomIcon icon={Star} className="text-yellow-500" size={16} />{" "}
+          <CustomIcon icon={Star} className="text-yellow-500" size={16} />
         </p>
       </p>
 

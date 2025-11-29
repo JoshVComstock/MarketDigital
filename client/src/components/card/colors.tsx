@@ -1,5 +1,3 @@
-"use client";
-
 import { ProductVariant } from "./types/Props";
 
 const Colors = ({ color, stock }: ProductVariant) => {
