@@ -19,6 +19,15 @@ enum State {
   Historic
 }
 
+enum OrderStatus {
+  Pending
+  Preparing
+  OnRoute
+  AtReferencePoint
+  Delivered
+  Cancelled
+}
+
 model User {
   id        String   @id @default(cuid())
   name      String?
@@ -31,13 +40,28 @@ model User {
 }
 
 model Client {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   name      String
-  email     String?  @unique
+  email     String?   @unique
   phone     String?
-  state     State    @default(Active)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  googleId  String
+  photo     String
+  state     State     @default(Active)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  booking[]
+}
+
+model booking {
+  id                  String            @id @default(cuid())
+  clientId            String
+  productId           String
+  referenceLocationId String
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  Client              Client            @relation(fields: [clientId], references: [id])
+  Product             Product           @relation(fields: [productId], references: [id])
+  ReferenceLocation   ReferenceLocation @relation(fields: [referenceLocationId], references: [id])
 }
 
 model Product {
@@ -50,11 +74,13 @@ model Product {
   state       State        @default(Active)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  Stock       Stock?
+  stock       Float
   Propiety    Propiety[]
   categoryId  String
   Category    Category     @relation(fields: [categoryId], references: [id])
   Promutions  Promutions[]
+  bookings    booking[]
+  quotes      Quote[]
 }
 
 model Propiety {
@@ -80,26 +106,6 @@ model Promutions {
   updatedAt   DateTime @updatedAt
 }
 
-model ReferenceLocation {
-  id        String   @id @default(cuid())
-  address   String
-  latitude  Float
-  longitude Float
-  state     State    @default(Active)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Stock {
-  id        String   @id @default(cuid())
-  product   Product  @relation(fields: [productId], references: [id])
-  productId String   @unique
-  quantity  Int
-  state     State    @default(Active)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Category {
   id        String    @id @default(cuid())
   name      String
@@ -109,31 +115,24 @@ model Category {
   Product   Product[]
 }
 
-/**
- * model Sale {
- * id                  String             @id @default(cuid())
- * date                DateTime           @default(now())
- * total               Float
- * client              Client             @relation(fields: [clientId], references: [id])
- * clientId            String
- * referenceLocation   ReferenceLocation? @relation(fields: [referenceLocationId], references: [id])
- * referenceLocationId String?
- * state               State              @default(Active)
- * metodPayment        String
- * createdAt           DateTime           @default(now())
- * updatedAt           DateTime           @updatedAt
- * DetailSale          DetailSale[]
- * }
- * model DetailSale {
- * id        String   @id @default(cuid())
- * sale      Sale     @relation(fields: [saleId], references: [id])
- * saleId    String
- * product   Product  @relation(fields: [productId], references: [id])
- * productId String
- * quantity  Int
- * price     Float
- * state     State    @default(Active)
- * createdAt DateTime @default(now())
- * updatedAt DateTime @updatedAt
- * }
- */
+model ReferenceLocation {
+  id        String    @id @default(cuid())
+  address   String
+  latitude  Float
+  longitude Float
+  state     State     @default(Active)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  booking[]
+}
+
+model Quote {
+  id        String   @id @default(cuid())
+  productId String
+  total     Float
+  ip        String
+  origin    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Product   Product  @relation(fields: [productId], references: [id])
+}
